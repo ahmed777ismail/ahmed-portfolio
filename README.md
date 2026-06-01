@@ -8,13 +8,11 @@ Premium backend-focused portfolio for Ahmed Ismail, built with Next.js, Tailwind
 npm install
 npm run dev
 ```
-
 ## Production build
 
 ```bash
 npm run build
 ```
-
 The project uses `output: "export"` in `next.config.mjs`, so the production output is fully static in `out/`.
 
 ## GitHub Pages
