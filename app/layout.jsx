@@ -45,6 +45,11 @@ export default function RootLayout({ children }) {
             __html: `(function(){try{var saved=localStorage.getItem('ahmed-portfolio-theme');var preferred=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=saved||preferred;}catch(e){document.documentElement.dataset.theme='dark';}})();`
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if('scrollRestoration' in history)history.scrollRestoration='manual';if(location.hash)history.replaceState(null,'',location.pathname+location.search);window.scrollTo(0,0);window.addEventListener('load',function(){window.scrollTo(0,0);},{once:true});}catch(e){}})();`
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>
