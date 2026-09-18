@@ -1,24 +1,13 @@
 'use client';
 
-import Image from 'next/image';
 import { Activity, Braces, ServerCog, Terminal } from 'lucide-react';
-import { withBasePath } from '@/lib/site';
 import { motion } from './MotionPrimitives';
 
 export default function TerminalPanel() {
   return (
-    <section id="command-center" className="command-center" aria-labelledby="command-center-title">
-      <Image
-        className="command-center-image"
-        src={withBasePath('/assets/backend-command-center.png')}
-        alt="Backend engineering workstation displaying system architecture and deployment telemetry"
-        fill
-        sizes="100vw"
-        loading="lazy"
-      />
-      <div className="command-center-shade" />
+    <section className="terminal-section section-shell" aria-labelledby="command-center-title">
       <motion.div
-        className="command-center-content section-shell"
+        className="terminal-layout"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}

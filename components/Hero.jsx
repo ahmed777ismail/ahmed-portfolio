@@ -8,8 +8,19 @@ import { motion, staggerContainer, fadeUp } from './MotionPrimitives';
 
 export default function Hero() {
   return (
-    <section id="home" className="hero section-shell">
-      <motion.div className="hero-copy" variants={staggerContainer} initial="hidden" animate="visible">
+    <section id="home" className="hero-stage">
+      <Image
+        className="hero-tech-background"
+        src={withBasePath('/assets/backend-command-center.png')}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        aria-hidden="true"
+      />
+      <div className="hero-tech-shade" aria-hidden="true" />
+      <div className="hero section-shell">
+        <motion.div className="hero-copy" variants={staggerContainer} initial="hidden" animate="visible">
         <motion.div className="status-pill" variants={fadeUp}>
           <span />
           Mid-Level Backend Developer at RunSoft
@@ -33,42 +44,43 @@ export default function Hero() {
           <a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn <ArrowUpRight size={14} /></a>
           <a href={profile.github} target="_blank" rel="noreferrer"><Github size={17} /> GitHub <ArrowUpRight size={14} /></a>
         </motion.div>
-      </motion.div>
+        </motion.div>
 
-      <motion.div
-        className="hero-visual"
-        initial={{ opacity: 0, scale: 0.96, y: 24 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <div className="portrait-frame">
-          <Image
-            src={withBasePath('/assets/portrait.png')}
-            alt="Black-and-white portrait of Ahmed Ismail"
-            width={900}
-            height={1100}
-            priority
-            sizes="(max-width: 900px) 92vw, 42vw"
-          />
-          <div className="portrait-badge">
-            <span>3+</span>
-            years shipping production software
+        <motion.div
+          className="hero-visual"
+          initial={{ opacity: 0, scale: 0.96, y: 24 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="portrait-frame">
+            <Image
+              src={withBasePath('/assets/portrait.png')}
+              alt="Black-and-white portrait of Ahmed Ismail"
+              width={900}
+              height={1100}
+              priority
+              sizes="(max-width: 900px) 92vw, 42vw"
+            />
+            <div className="portrait-badge">
+              <span>3+</span>
+              years shipping production software
+            </div>
           </div>
-        </div>
-        <div className="portrait-caption" aria-hidden="true">
-          <span>PHP / Laravel</span>
-          <span>APIs / Data / Delivery</span>
-        </div>
-      </motion.div>
+          <div className="portrait-caption" aria-hidden="true">
+            <span>PHP / Laravel</span>
+            <span>APIs / Data / Delivery</span>
+          </div>
+        </motion.div>
 
-      <motion.div className="stats-grid hero-stats" variants={staggerContainer} initial="hidden" animate="visible">
-        {stats.map((stat) => (
-          <motion.div className="stat-card" key={stat.label} variants={fadeUp}>
-            <strong>{stat.value}</strong>
-            <span>{stat.label}</span>
-          </motion.div>
-        ))}
-      </motion.div>
+        <motion.div className="stats-grid hero-stats" variants={staggerContainer} initial="hidden" animate="visible">
+          {stats.map((stat) => (
+            <motion.div className="stat-card" key={stat.label} variants={fadeUp}>
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 }
