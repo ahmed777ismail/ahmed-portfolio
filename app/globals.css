@@ -1001,16 +1001,85 @@ h3 {
 .line-d { left: 47%; top: 69%; width: 33%; transform: rotate(11deg); }
 .line-e { left: 30%; bottom: 18%; width: 28%; transform: rotate(-22deg); }
 
-.terminal-section {
-  padding-top: 70px;
+.command-center {
+  position: relative;
+  min-height: 760px;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: end;
+  margin: 70px 0 0;
+  background: #000;
+}
+
+.command-center-image {
+  z-index: -3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.command-center-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08) 10%, rgba(0, 0, 0, 0.28) 48%, rgba(0, 0, 0, 0.96) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.82), transparent 60%);
+}
+
+.command-center-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.78fr);
+  align-items: end;
+  gap: clamp(36px, 7vw, 100px);
+  padding-top: 180px;
+  padding-bottom: 72px;
+}
+
+.command-center-heading {
+  color: #fff;
+}
+
+.command-center-heading > p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: #66a3ff;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.command-center-heading > p span {
+  width: 8px;
+  height: 8px;
+  background: #2f80ff;
+  box-shadow: 0 0 18px #2f80ff;
+}
+
+.command-center-heading h2 {
+  max-width: 680px;
+  color: #fff;
+}
+
+.command-center-heading > span {
+  display: block;
+  max-width: 600px;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 .terminal-card {
   overflow: hidden;
-  border: 1px solid var(--line-strong);
+  border: 1px solid rgba(102, 163, 255, 0.42);
   border-radius: 4px;
-  background: #000000;
-  box-shadow: var(--shadow);
+  background: rgba(0, 5, 15, 0.88);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(18px);
 }
 
 .terminal-bar {
@@ -1019,8 +1088,8 @@ h3 {
   justify-content: space-between;
   min-height: 54px;
   padding: 0 18px;
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
+  border-bottom: 1px solid rgba(102, 163, 255, 0.2);
+  background: rgba(3, 12, 28, 0.92);
 }
 
 .terminal-dots {
@@ -1041,7 +1110,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.64);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 11px;
 }
@@ -1050,10 +1119,34 @@ h3 {
   margin: 0;
   overflow-x: auto;
   padding: 30px;
-  color: var(--lime);
+  color: #66a3ff;
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: clamp(12px, 1.3vw, 15px);
   line-height: 1.9;
+}
+
+.command-center-signals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(102, 163, 255, 0.18);
+}
+
+.command-center-signals span {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 50px;
+  border-right: 1px solid rgba(102, 163, 255, 0.18);
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.command-center-signals span:last-child {
+  border-right: 0;
 }
 
 .repo-grid {
@@ -1062,90 +1155,6 @@ h3 {
   gap: 1px;
   border: 1px solid var(--line);
   background: var(--line);
-}
-
-.github-live-panel {
-  margin-bottom: 24px;
-  border: 1px solid var(--line-strong);
-  border-radius: 4px;
-  background: var(--ink-soft);
-}
-
-.github-live-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  min-height: 54px;
-  padding: 0 18px;
-  border-bottom: 1px solid var(--line);
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 11px;
-}
-
-.github-live-heading span,
-.github-live-heading a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.github-live-heading span {
-  color: var(--paper);
-  text-transform: uppercase;
-}
-
-.github-live-heading i {
-  width: 7px;
-  height: 7px;
-  background: var(--lime);
-  box-shadow: 0 0 14px var(--lime);
-}
-
-.github-live-heading a {
-  color: var(--lime);
-  font-weight: 800;
-}
-
-.github-live-grid {
-  display: grid;
-  grid-template-columns: minmax(330px, 0.85fr) minmax(0, 1.15fr);
-  gap: 1px;
-  background: var(--line);
-}
-
-.github-visual {
-  min-width: 0;
-  padding: 18px;
-  background: var(--ink-soft);
-}
-
-.github-visual > p {
-  margin-bottom: 16px;
-  color: var(--muted);
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 10px;
-  text-transform: uppercase;
-}
-
-.github-theme-image {
-  display: block;
-  width: 100%;
-  min-height: 150px;
-  object-fit: contain;
-  object-position: center;
-}
-
-.github-image-light {
-  display: none;
-}
-
-html[data-theme='light'] .github-image-dark {
-  display: none;
-}
-
-html[data-theme='light'] .github-image-light {
-  display: block;
 }
 
 .repo-card {
@@ -1301,6 +1310,11 @@ html[data-theme='light'] .github-image-light {
   .repo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .command-center-content {
+    grid-template-columns: minmax(0, 1fr) minmax(380px, 0.9fr);
+    gap: 36px;
+  }
 }
 
 @media (max-width: 840px) {
@@ -1376,8 +1390,19 @@ html[data-theme='light'] .github-image-light {
     grid-template-columns: 54px 1fr;
   }
 
-  .github-live-grid {
+  .command-center {
+    min-height: 880px;
+    align-items: end;
+  }
+
+  .command-center-image {
+    object-position: 58% center;
+  }
+
+  .command-center-content {
     grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 260px;
   }
 
   .case-details {
@@ -1483,10 +1508,37 @@ html[data-theme='light'] .github-image-light {
     padding: 34px 18px;
   }
 
-  .github-live-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 14px;
+  .command-center {
+    min-height: 800px;
+    margin-top: 30px;
+  }
+
+  .command-center-image {
+    object-position: 55% center;
+  }
+
+  .command-center-shade {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.92) 52%, #000 100%);
+  }
+
+  .command-center-content {
+    width: calc(100% - 24px);
+    padding-top: 250px;
+    padding-bottom: 44px;
+  }
+
+  .command-center-heading > span {
+    font-size: 14px;
+  }
+
+  .terminal-card pre {
+    padding: 22px 18px;
+    font-size: 11px;
+  }
+
+  .command-center-signals span {
+    min-height: 46px;
+    font-size: 9px;
   }
 
   .site-footer {
