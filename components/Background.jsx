@@ -15,9 +15,11 @@ export default function Background() {
     <div className="background-shell" aria-hidden="true">
       <div className="grid-overlay" />
       <div className="noise-overlay" />
-      <div className="glow glow-one" />
-      <div className="glow glow-two" />
-      <div className="glow glow-three" />
+      <motion.div
+        className="scan-line"
+        animate={{ y: ['0vh', '100vh'] }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
+      />
       <div className="particle-field">
         {particles.map((particle) => (
           <motion.span

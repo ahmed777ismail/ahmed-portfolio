@@ -1,16 +1,16 @@
 'use client';
 
-import { architectureCards } from '@/lib/data';
+import { engineeringPrinciples } from '@/lib/data';
 import SectionHeader from './SectionHeader';
 import { motion, staggerContainer, fadeUp } from './MotionPrimitives';
 
 export default function Architecture() {
   return (
-    <section id="architecture" className="section-shell architecture-section">
+    <section className="section-shell architecture-section">
       <SectionHeader
-        eyebrow="DevOps / Architecture"
-        title="Architecture mindset, visualized as backend flow."
-        body="A system-oriented section built around APIs, queues, services, deployment loops, and design tradeoffs."
+        eyebrow="Engineering approach"
+        title="Reliable backend work is a chain of deliberate decisions."
+        body="The principles Ahmed applies across API design, data modeling, performance work, and production delivery."
       />
       <div className="architecture-layout">
         <motion.div
@@ -20,7 +20,7 @@ export default function Architecture() {
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
         >
-          {architectureCards.map((card) => {
+          {engineeringPrinciples.map((card) => {
             const Icon = card.icon;
             return (
               <motion.article className="architecture-card interactive-card" key={card.title} variants={fadeUp}>
@@ -38,15 +38,16 @@ export default function Architecture() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
-          aria-label="Backend architecture diagram"
+          aria-label="Production booking flow diagram"
         >
-          <div className="diagram-node node-client">Client</div>
-          <div className="diagram-node node-api">API Gateway</div>
-          <div className="diagram-node node-auth">Auth Service</div>
-          <div className="diagram-node node-booking">Booking Service</div>
-          <div className="diagram-node node-wallet">Wallet Service</div>
-          <div className="diagram-node node-queue">Queue</div>
-          <div className="diagram-node node-db">PostgreSQL / Redis</div>
+          <div className="diagram-heading"><span>Production flow</span><strong>Booking request</strong></div>
+          <div className="diagram-node node-client">Web / Mobile</div>
+          <div className="diagram-node node-api">Versioned API</div>
+          <div className="diagram-node node-auth">JWT + Policy</div>
+          <div className="diagram-node node-booking">Booking Logic</div>
+          <div className="diagram-node node-wallet">Payment / Wallet</div>
+          <div className="diagram-node node-queue">Events / Notify</div>
+          <div className="diagram-node node-db">MySQL + Redis</div>
           <span className="line line-a" />
           <span className="line line-b" />
           <span className="line line-c" />

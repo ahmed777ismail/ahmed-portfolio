@@ -3,7 +3,7 @@ import { basePath, siteUrl } from '@/lib/site';
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Ahmed Ismail | Backend Engineer',
+  title: 'Ahmed Ismail | Software Engineer & Backend Engineer',
   description:
     'Backend-focused full-stack developer from Egypt building scalable systems with Laravel, Spring Boot, microservices, DevOps, and clean architecture.',
   keywords: [
@@ -11,7 +11,8 @@ export const metadata = {
     'Backend Engineer',
     'Laravel Developer',
     'Spring Boot Developer',
-    'Full Stack Developer',
+    'Software Engineer',
+    'Mid-Level Backend Developer',
     'Microservices',
     'DevOps',
     'Egypt Developer'
@@ -19,7 +20,7 @@ export const metadata = {
   authors: [{ name: 'Ahmed Ismail' }],
   creator: 'Ahmed Ismail',
   openGraph: {
-    title: 'Ahmed Ismail | Backend Engineer',
+    title: 'Ahmed Ismail | Software Engineer & Backend Engineer',
     description:
       'Scalable backend systems, clean architecture, APIs, Laravel, Spring Boot, and DevOps.',
     type: 'website',
@@ -28,7 +29,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ahmed Ismail | Backend Engineer',
+    title: 'Ahmed Ismail | Software Engineer & Backend Engineer',
     description:
       'Backend-focused full-stack developer from Egypt building scalable systems.',
     images: [`${basePath}/assets/portrait.png`]
@@ -37,7 +38,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var saved=localStorage.getItem('ahmed-portfolio-theme');var preferred=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=saved||preferred;}catch(e){document.documentElement.dataset.theme='dark';}})();`
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

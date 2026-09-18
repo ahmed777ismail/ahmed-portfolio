@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowDownRight, Download, Mail, ServerCog } from 'lucide-react';
-import { focusItems, stats } from '@/lib/data';
+import { ArrowDownRight, ArrowUpRight, Download, Github, Linkedin, MapPin } from 'lucide-react';
+import { profile, stats } from '@/lib/data';
 import { withBasePath } from '@/lib/site';
 import { motion, staggerContainer, fadeUp } from './MotionPrimitives';
 
@@ -12,28 +12,26 @@ export default function Hero() {
       <motion.div className="hero-copy" variants={staggerContainer} initial="hidden" animate="visible">
         <motion.div className="status-pill" variants={fadeUp}>
           <span />
-          Backend-focused full-stack developer from Egypt
+          Mid-Level Backend Developer at RunSoft
         </motion.div>
-        <motion.h1 variants={fadeUp}>Building scalable backend systems with Laravel & Spring Boot.</motion.h1>
+        <motion.p className="hero-kicker" variants={fadeUp}>Ahmed Ismail / Software Engineer</motion.p>
+        <motion.h1 variants={fadeUp}>I engineer the systems behind the product.</motion.h1>
         <motion.p className="hero-lede" variants={fadeUp}>
-          Ahmed Ismail designs APIs, authentication systems, scalable architectures, and modern web applications with
-          a clean architecture mindset and a strong eye for backend performance.
+          Backend-focused software engineer with 3+ years of experience building production APIs, booking and payment
+          workflows, authentication, real-time features, and maintainable Laravel systems.
         </motion.p>
         <motion.div className="hero-actions" variants={fadeUp}>
-          <a className="button button-primary" href="#projects">
-            View Projects <ArrowDownRight size={18} />
+          <a className="button button-primary" href="#work">
+            View production work <ArrowDownRight size={18} />
           </a>
-          <a className="button button-secondary" href="#contact">
-            Contact Me <Mail size={18} />
-          </a>
-          <a className="button button-ghost" href={withBasePath('/Ahmed-Ismail-CV.pdf')}>
+          <a className="button button-secondary" href={withBasePath(profile.cv)} download>
             Download CV <Download size={18} />
           </a>
         </motion.div>
-        <motion.div className="focus-strip" variants={fadeUp}>
-          {focusItems.map((item) => (
-            <span key={item}>{item}</span>
-          ))}
+        <motion.div className="hero-socials" variants={fadeUp}>
+          <span><MapPin size={16} /> {profile.location}</span>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn <ArrowUpRight size={14} /></a>
+          <a href={profile.github} target="_blank" rel="noreferrer"><Github size={17} /> GitHub <ArrowUpRight size={14} /></a>
         </motion.div>
       </motion.div>
 
@@ -53,14 +51,13 @@ export default function Hero() {
             sizes="(max-width: 900px) 92vw, 42vw"
           />
           <div className="portrait-badge">
-            <ServerCog size={19} />
-            API-first engineering
+            <span>3+</span>
+            years shipping production software
           </div>
         </div>
-        <div className="floating-code" aria-hidden="true">
-          <span>POST /api/v1/bookings</span>
-          <span>queue:payments.reconcile</span>
-          <span>service.auth.verify()</span>
+        <div className="portrait-caption" aria-hidden="true">
+          <span>PHP / Laravel</span>
+          <span>APIs / Data / Delivery</span>
         </div>
       </motion.div>
 
