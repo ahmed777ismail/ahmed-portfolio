@@ -1,8 +1,9 @@
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <p>Built with Next.js & TailwindCSS</p>
-      <span>Ahmed Ismail · Backend Engineer | Laravel & Spring Boot Developer</span>
+      <p>Ahmed Ismail</p>
+      <span>Software Engineer / Backend Engineer · Cairo, Egypt</span>
+      <small>Built with Next.js, TailwindCSS & Framer Motion</small>
     </footer>
   );
 }

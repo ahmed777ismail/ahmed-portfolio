@@ -6,12 +6,11 @@ import { skillGroups } from '@/lib/data';
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-shell">
+    <section id="stack" className="section-shell stack-section">
       <SectionHeader
-        eyebrow="Skills"
-        title="A backend-heavy toolkit for production web systems."
-        body="Categorized around the stack Ahmed uses to move from API design to deployment-ready applications."
-        centered
+        eyebrow="Technical stack"
+        title="Strongest in Laravel. Comfortable across the delivery path."
+        body="The stack below follows the CV directly: professional strengths first, then the ecosystems Ahmed is actively expanding into."
       />
       <motion.div
         className="skills-grid"

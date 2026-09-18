@@ -21,9 +21,9 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Skills />
-        <Projects />
         <Timeline />
+        <Projects />
+        <Skills />
         <Architecture />
         <TerminalPanel />
         <ContributionGraph />

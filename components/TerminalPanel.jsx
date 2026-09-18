@@ -25,13 +25,13 @@ export default function TerminalPanel() {
           </div>
         </div>
         <pre>
-          <code>{`> Currently learning DevOps & Distributed Systems
+          <code>{`> Current engineering focus
 
-$ docker compose up api gateway queue
-$ ./gradlew test && php artisan test
-$ design --focus "resilience, observability, clean contracts"
+$ stack --add spring-boot asp.net-core kubernetes
+$ study --focus "microservices, distributed systems"
+$ improve --always "performance, architecture, delivery"
 
-status: building reliable systems with calm engineering discipline`}</code>
+status: expanding the toolkit without losing backend depth`}</code>
         </pre>
       </motion.div>
     </section>

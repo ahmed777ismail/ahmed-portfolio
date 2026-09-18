@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Download, Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { navItems } from '@/lib/data';
+import { navItems, profile } from '@/lib/data';
 import { withBasePath } from '@/lib/site';
+import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -17,8 +18,8 @@ export default function Header() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <a className="brand" href="#home" aria-label="Ahmed Ismail home">
-        <span>AI</span>
-        <small>Backend Engineer</small>
+        <span>A/I</span>
+        <small>Software Engineer</small>
       </a>
 
       <nav className="desktop-nav" aria-label="Primary navigation">
@@ -29,14 +30,16 @@ export default function Header() {
         ))}
       </nav>
 
-      <a className="header-cta" href={withBasePath('/Ahmed-Ismail-CV.pdf')} aria-label="Download Ahmed Ismail CV">
-        <Download size={17} />
-        CV
-      </a>
-
-      <button className="menu-button" onClick={() => setOpen((value) => !value)} aria-label="Toggle menu">
-        {open ? <X size={22} /> : <Menu size={22} />}
-      </button>
+      <div className="header-tools">
+        <ThemeToggle />
+        <a className="header-cta" href={profile.github} target="_blank" rel="noreferrer" aria-label="Ahmed Ismail on GitHub">
+          GitHub
+          <ArrowUpRight size={16} />
+        </a>
+        <button className="menu-button" onClick={() => setOpen((value) => !value)} aria-label="Toggle menu">
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </div>
 
       {open ? (
         <motion.nav
@@ -51,8 +54,8 @@ export default function Header() {
               {item.label}
             </a>
           ))}
-          <a href={withBasePath('/Ahmed-Ismail-CV.pdf')} onClick={() => setOpen(false)}>
-            Download CV
+          <a href={withBasePath(profile.cv)} onClick={() => setOpen(false)}>
+            <Download size={17} /> Download CV
           </a>
         </motion.nav>
       ) : null}

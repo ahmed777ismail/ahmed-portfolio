@@ -1,31 +1,41 @@
 'use client';
 
-import { timeline } from '@/lib/data';
+import { Check } from 'lucide-react';
+import { experience } from '@/lib/data';
 import SectionHeader from './SectionHeader';
 import { motion, staggerContainer, fadeUp } from './MotionPrimitives';
 
 export default function Timeline() {
   return (
-    <section className="section-shell">
+    <section id="experience" className="section-shell experience-section">
       <SectionHeader
-        eyebrow="Experience Timeline"
-        title="A practical path toward senior backend engineering."
-        body="The portfolio emphasizes collaboration, backend implementation, and Ahmed's current push into systems thinking."
+        eyebrow="Experience"
+        title="Production experience, measured in ownership."
+        body="Two backend roles across agency delivery and a live product environment, with increasing responsibility for architecture, performance, and team execution."
       />
       <motion.div
-        className="timeline"
+        className="experience-list"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
       >
-        {timeline.map((item) => (
-          <motion.article className="timeline-item" key={item.title} variants={fadeUp}>
-            <span className="timeline-dot" />
-            <div>
-              <small>{item.date}</small>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
+        {experience.map((item, index) => (
+          <motion.article className="experience-item" key={item.company} variants={fadeUp}>
+            <div className="experience-meta">
+              <span>0{index + 1}</span>
+              <time>{item.period}</time>
+              <small>{item.location}</small>
+            </div>
+            <div className="experience-copy">
+              <p className="company">{item.company}</p>
+              <h3>{item.role}</h3>
+              <p>{item.summary}</p>
+              <ul>
+                {item.achievements.map((achievement) => (
+                  <li key={achievement}><Check size={16} /> {achievement}</li>
+                ))}
+              </ul>
             </div>
           </motion.article>
         ))}

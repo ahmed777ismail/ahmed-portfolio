@@ -1,17 +1,17 @@
 'use client';
 
-import { ExternalLink, Github } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import { motion, staggerContainer, fadeUp } from './MotionPrimitives';
-import { projects } from '@/lib/data';
+import { caseStudies } from '@/lib/data';
 
 export default function Projects() {
   return (
-    <section id="projects" className="section-shell">
+    <section id="work" className="section-shell work-section">
       <SectionHeader
-        eyebrow="Featured Projects"
-        title="Backend-focused projects with realistic product pressure."
-        body="Each project is framed around data integrity, API contracts, role boundaries, and deployable engineering."
+        eyebrow="Selected work"
+        title="Real systems, real constraints, real outcomes."
+        body="Professional work from Ahmed's CV, presented as compact case studies rather than speculative portfolio projects."
       />
       <motion.div
         className="projects-grid"
@@ -20,39 +20,32 @@ export default function Projects() {
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
       >
-        {projects.map((project) => {
-          const Icon = project.icon;
-          return (
-            <motion.article className="project-card interactive-card" key={project.name} variants={fadeUp}>
-              <div className="project-topline">
-                <div className="card-icon">
-                  <Icon size={23} />
-                </div>
-                <span>{project.tag}</span>
+        {caseStudies.map((project) => (
+            <motion.article className="case-study interactive-card" key={project.index} variants={fadeUp}>
+              <div className="case-index">{project.index}</div>
+              <div className="case-copy">
+                <span className="case-label">{project.label}</span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                {project.metric ? (
+                  <div className="performance-meter" aria-label="API response improved from 4 seconds to 0.5 seconds">
+                    <span>{project.metric.before}</span><i /><ArrowRight size={18} /><i className="after" /><strong>{project.metric.after}</strong>
+                  </div>
+                ) : null}
               </div>
-              <h3>{project.name}</h3>
-              <p>{project.description}</p>
+              <div className="case-details">
+                <strong>{project.outcome}</strong>
               <div className="feature-list">
-                {project.features.map((feature) => (
+                {project.details.map((feature) => (
                   <span key={feature}>{feature}</span>
                 ))}
               </div>
-              <div className="stack-row">
-                {project.stack.map((tech) => (
-                  <small key={tech}>{tech}</small>
-                ))}
-              </div>
-              <div className="project-actions">
-                <a href="https://github.com/" target="_blank" rel="noreferrer">
-                  <Github size={17} /> GitHub
-                </a>
-                <a href="#" aria-label={`${project.name} live demo placeholder`}>
-                  <ExternalLink size={17} /> Live Demo
-                </a>
+                {project.links ? <div className="case-links">{project.links.map((link) => (
+                  <a href={link.href} target="_blank" rel="noreferrer" key={link.label}>{link.label} <ArrowUpRight size={15} /></a>
+                ))}</div> : null}
               </div>
             </motion.article>
-          );
-        })}
+        ))}
       </motion.div>
     </section>
   );
