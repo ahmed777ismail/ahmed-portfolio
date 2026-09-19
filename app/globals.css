@@ -278,6 +278,7 @@ html[data-theme='light'] .theme-icon-moon {
   margin-top: -84px;
   padding-top: 84px;
   background: #000;
+  color: #ffffff;
   --ink: #000000;
   --paper: #ffffff;
   --muted: rgba(255, 255, 255, 0.72);
@@ -319,6 +320,11 @@ html[data-theme='light'] .theme-icon-moon {
 .hero-copy {
   position: relative;
   z-index: 2;
+  color: #ffffff;
+}
+
+.hero h1 {
+  color: #ffffff;
 }
 
 .status-pill {
