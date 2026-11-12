@@ -22,6 +22,9 @@ export default function HeroSplash() {
     if (hasTriggeredRef.current) return;
     hasTriggeredRef.current = true;
 
+    // Force page to stay pinned to top before measuring geometry
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
     const container = containerRef.current;
     const flight = flightRef.current;
     const perspective = perspectiveRef.current;
@@ -30,7 +33,10 @@ export default function HeroSplash() {
 
     if (!container || !flight || !gimbal || !target) {
       setPhase('landed');
-      const t = window.setTimeout(() => setPhase('done'), 180);
+      const t = window.setTimeout(() => {
+        setPhase('done');
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }, 180);
       timersRef.current.push(t);
       return;
     }
@@ -40,7 +46,10 @@ export default function HeroSplash() {
 
     if (targetRect.width <= 0 || flightRect.width <= 0) {
       setPhase('landed');
-      const t = window.setTimeout(() => setPhase('done'), 180);
+      const t = window.setTimeout(() => {
+        setPhase('done');
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }, 180);
       timersRef.current.push(t);
       return;
     }
@@ -76,14 +85,36 @@ export default function HeroSplash() {
 
     const tLanded = window.setTimeout(() => {
       setPhase('landed');
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }, 790);
 
     const tDone = window.setTimeout(() => {
       setPhase('done');
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }, 900);
 
     timersRef.current.push(tLanded, tDone);
   }, [setPhase]);
+
+  // Lock body/html scroll completely while splash screen is active
+  useEffect(() => {
+    if (phase !== 'done') {
+      const prevHtmlOverflow = document.documentElement.style.overflow;
+      const prevBodyOverflow = document.body.style.overflow;
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+      return () => {
+        document.documentElement.style.overflow = prevHtmlOverflow;
+        document.body.style.overflow = prevBodyOverflow;
+      };
+    } else {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  }, [phase]);
 
   useEffect(() => {
     if (useSplashStore.getState().phase === 'done') return;
@@ -100,8 +131,21 @@ export default function HeroSplash() {
       return clearAllTimers;
     }
 
-    if (!window.location.hash && window.scrollY > 0) {
-      window.scrollTo(0, 0);
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+    // Prevent scroll wheel and touch drags on the splash overlay
+    const container = containerRef.current;
+    const preventScroll = (e) => {
+      if (!hasTriggeredRef.current) {
+        e.preventDefault();
+      }
+    };
+    if (container) {
+      container.addEventListener('wheel', preventScroll, { passive: false });
+      container.addEventListener('touchmove', preventScroll, { passive: false });
     }
 
     // Interactive pointer parallax
@@ -142,6 +186,10 @@ export default function HeroSplash() {
       clearAllTimers();
       if (rafId) window.cancelAnimationFrame(rafId);
       window.removeEventListener('pointermove', handlePointerMove);
+      if (container) {
+        container.removeEventListener('wheel', preventScroll);
+        container.removeEventListener('touchmove', preventScroll);
+      }
     };
   }, [setPhase, startFlight]);
 

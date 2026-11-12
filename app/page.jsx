@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import HeroSplash from '@/components/HeroSplash';
+import ScrollRestoration from '@/components/ScrollRestoration';
 import StatsCounter from '@/components/StatsCounter';
 import ServicesTrack from '@/components/ServicesTrack';
 import Projects from '@/components/Projects';
@@ -16,6 +17,9 @@ import Footer from '@/components/Footer';
 export default function Home() {
   return (
     <div className="editorial-portfolio-root">
+      {/* Ensure page always starts at top on every reload & initial load */}
+      <ScrollRestoration />
+
       {/* 3D Flight Hero Splash Loading Screen */}
       <HeroSplash />
 
