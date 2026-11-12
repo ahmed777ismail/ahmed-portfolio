@@ -8,8 +8,8 @@ export default function About() {
     <section id="profile" className="section-shell profile-section">
       <SectionHeader
         eyebrow="Engineering profile"
-        title="I work where product complexity meets production reality."
-        body="My strongest professional expertise is PHP and Laravel. I translate business requirements into maintainable backend systems, then stay close to delivery, debugging, and performance."
+        title="Good backend work should feel boring — in the best way."
+        body="Clear contracts, predictable behavior, and fewer surprises in production. PHP and Laravel are my strongest tools, but the real craft is understanding the problem and staying with it through delivery."
       />
       <Reveal className="capability-grid">
         {capabilities.map((item) => (

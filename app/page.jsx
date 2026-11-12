@@ -1,35 +1,43 @@
-import About from '@/components/About';
-import Architecture from '@/components/Architecture';
-import Background from '@/components/Background';
-import Contact from '@/components/Contact';
-import ContributionGraph from '@/components/ContributionGraph';
-import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import PointerGlow from '@/components/PointerGlow';
+import StatsCounter from '@/components/StatsCounter';
+import ServicesTrack from '@/components/ServicesTrack';
 import Projects from '@/components/Projects';
+import Timeline from '@/components/Timeline';
+import Process from '@/components/Process';
 import Skills from '@/components/Skills';
 import TerminalPanel from '@/components/TerminalPanel';
-import Timeline from '@/components/Timeline';
+import ContributionGraph from '@/components/ContributionGraph';
+import FAQ from '@/components/FAQ';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <>
-      <Background />
-      <PointerGlow />
+    <div className="editorial-portfolio-root">
+      {/* Ambient background glows */}
+      <div className="ambient-canvas-glow" aria-hidden="true" />
+
+      {/* Floating Glass Pill Header */}
       <Header />
-      <main>
+
+      {/* Main Content Sections */}
+      <main id="main-content">
         <Hero />
-        <About />
-        <Timeline />
+        <StatsCounter />
+        <ServicesTrack />
         <Projects />
+        <Timeline />
+        <Process />
         <Skills />
-        <Architecture />
         <TerminalPanel />
         <ContributionGraph />
+        <FAQ />
         <Contact />
       </main>
+
+      {/* Editorial Footer */}
       <Footer />
-    </>
+    </div>
   );
 }

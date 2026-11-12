@@ -1,57 +1,62 @@
 import './globals.css';
 import { basePath, siteUrl } from '@/lib/site';
+import { LanguageProvider } from '@/components/LanguageContext';
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Ahmed Ismail | Software Engineer & Backend Engineer',
+  title: 'Ahmed Ismail | Full-Stack Web & DevOps Engineer',
   description:
-    'Backend-focused full-stack developer from Egypt building scalable systems with Laravel, Spring Boot, microservices, DevOps, and clean architecture.',
+    'Ahmed Ismail is a Cairo-based Full-Stack Web & DevOps Engineer specializing in Next.js, React, Laravel, Docker, automated CI/CD, MySQL, and sub-second performance.',
   keywords: [
     'Ahmed Ismail',
-    'Backend Engineer',
+    'Full-Stack Web Developer',
+    'DevOps Engineer',
+    'Next.js Developer',
+    'React Developer',
     'Laravel Developer',
-    'Spring Boot Developer',
-    'Software Engineer',
-    'Mid-Level Backend Developer',
-    'Microservices',
-    'DevOps',
-    'Egypt Developer'
+    'Docker',
+    'CI/CD Pipelines',
+    'Cairo Egypt Developer'
   ],
   authors: [{ name: 'Ahmed Ismail' }],
   creator: 'Ahmed Ismail',
   openGraph: {
-    title: 'Ahmed Ismail | Software Engineer & Backend Engineer',
+    title: 'Ahmed Ismail | Full-Stack Web & DevOps Engineer',
     description:
-      'Scalable backend systems, clean architecture, APIs, Laravel, Spring Boot, and DevOps.',
+      'High-performance full-stack web platforms, containerized environments, automated CI/CD pipelines, and Clean Architecture.',
     type: 'website',
     locale: 'en_US',
     images: [`${basePath}/assets/portrait.png`]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ahmed Ismail | Software Engineer & Backend Engineer',
+    title: 'Ahmed Ismail | Full-Stack Web & DevOps Engineer',
     description:
-      'Backend-focused full-stack developer from Egypt building scalable systems.',
+      'Full-Stack Web & DevOps Engineer from Cairo building resilient products that scale.',
     images: [`${basePath}/assets/portrait.png`]
   }
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth bg-[#F7F7F7] text-[#262626]" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var saved=localStorage.getItem('ahmed-portfolio-theme');var preferred=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=saved||preferred;}catch(e){document.documentElement.dataset.theme='dark';}})();`
-          }}
+        <meta name="theme-color" content="#f7f7f7" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Tajawal:wght@400;500;700&display=swap"
+          rel="stylesheet"
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if('scrollRestoration' in history)history.scrollRestoration='manual';if(location.hash)history.replaceState(null,'',location.pathname+location.search);window.scrollTo(0,0);window.addEventListener('load',function(){window.scrollTo(0,0);},{once:true});}catch(e){}})();`
+            __html: `(function(){try{var savedLang=localStorage.getItem('ahmed_portfolio_lang');if(savedLang==='ar'){document.documentElement.lang='ar';document.documentElement.dir='rtl';}else{document.documentElement.lang='en';document.documentElement.dir='ltr';}}catch(e){}})();`
           }}
         />
       </head>
-      <body>{children}</body>
+      <body className="bg-[#F7F7F7] text-[#262626] antialiased">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }
