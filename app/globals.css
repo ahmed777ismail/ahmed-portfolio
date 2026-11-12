@@ -133,6 +133,81 @@ html[dir='rtl'] .font-serif {
     transform: translateZ(20px) rotateX(-8deg) rotateY(16deg) rotate(2deg) scale(1.02);
   }
   to {
-    transform: translateZ(6px) rotateX(7deg) rotateY(-12deg) rotate(0) scale(1);
+    transform: translateZ(6px) rotateX(7deg) rotateY(-12deg) rotate(-1deg) scale(1);
   }
 }
+
+@keyframes hero-splash-loader-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes hero-splash-orbit-a {
+  0% {
+    transform: translateZ(-22px) rotateX(66deg) rotateY(-16deg) rotate(0deg);
+  }
+  to {
+    transform: translateZ(-22px) rotateX(66deg) rotateY(-16deg) rotate(360deg);
+  }
+}
+
+@keyframes hero-splash-orbit-b {
+  0% {
+    transform: translateZ(18px) rotateX(-58deg) rotateY(22deg) rotate(360deg);
+  }
+  to {
+    transform: translateZ(18px) rotateX(-58deg) rotateY(22deg) rotate(0deg);
+  }
+}
+
+@keyframes hero-splash-sheen {
+  0% {
+    opacity: 0;
+    transform: translateX(-130%) rotate(24deg);
+  }
+  25% {
+    opacity: 0.85;
+  }
+  75% {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(130%) rotate(24deg);
+  }
+}
+
+.hero-splash-flight {
+  will-change: transform;
+  transform: translate(0) scale(1);
+}
+
+.hero-splash-gimbal-intro {
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: 1s cubic-bezier(0.16, 1, 0.3, 1) forwards hero-splash-3d-gimbal;
+}
+
+.hero-splash-loader-bar {
+  animation: 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite hero-splash-loader-slide;
+}
+
+.hero-splash-ring-a {
+  animation: 3.6s linear infinite hero-splash-orbit-a;
+}
+
+.hero-splash-ring-b {
+  animation: 4.4s linear infinite hero-splash-orbit-b;
+}
+
+.hero-splash-sheen-sweep {
+  animation: 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards hero-splash-sheen;
+}
+

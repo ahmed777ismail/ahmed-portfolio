@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import HeroSplash from '@/components/HeroSplash';
 import StatsCounter from '@/components/StatsCounter';
 import ServicesTrack from '@/components/ServicesTrack';
 import Projects from '@/components/Projects';
@@ -15,6 +16,9 @@ import Footer from '@/components/Footer';
 export default function Home() {
   return (
     <div className="editorial-portfolio-root">
+      {/* 3D Flight Hero Splash Loading Screen */}
+      <HeroSplash />
+
       {/* Ambient background glows */}
       <div className="ambient-canvas-glow" aria-hidden="true" />
 
